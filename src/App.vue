@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import{ store } from './data/store';
 
 export default {
   
@@ -13,9 +14,10 @@ export default {
   methods:{
     getApi(){
       console.log('get API');
-      axios.get('http://127.0.0.1:8000/api/projects')
+      axios.get(store.apiUrl)
         .then(result => {
           this.loading = false;
+          console.log(result.data);
           this.projects = result.data.data
           console.log(this.projects);
         })
