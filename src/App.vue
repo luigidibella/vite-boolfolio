@@ -16,7 +16,7 @@ export default {
       axios.get('http://127.0.0.1:8000/api/projects')
         .then(result => {
           this.loading = false;
-          this.projects = result.data
+          this.projects = result.data.data
           console.log(this.projects);
         })
         .catch(error =>{
