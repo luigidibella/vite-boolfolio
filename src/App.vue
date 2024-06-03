@@ -1,35 +1,22 @@
 <script>
-import axios from 'axios';
-import{ store } from './data/store';
+import Header from './components/Header.vue'
 
 export default {
-  
+  components:{
+    Header,
+  },
   data(){
     return {
-      'projects' : [],
-      loading: true
+      
     }
   },
 
   methods:{
-    getApi(){
-      console.log('get API');
-      axios.get(store.apiUrl)
-        .then(result => {
-          this.loading = false;
-          console.log(result.data);
-          this.projects = result.data.data
-          console.log(this.projects);
-        })
-        .catch(error =>{
-          this.loading = false;
-          console.log(error);
-        })
-    }
+    
   },
 
   mounted(){
-    this.getApi()
+    
   }
 
 }
@@ -37,26 +24,25 @@ export default {
 
 <template>
   <div class="main-wrapper">
+    
     <div class="container">
-      <h1>boolfolio home</h1>
-      
-      <div v-if="!loading">
-        <h3>i miei progetti:</h3>
-        <ul>
-          <li 
-            v-for="project in projects" 
-            :key="project.id"
-          >
-          {{project.id}} - {{project.title}}
-          </li>
-        </ul>
-      </div>
-
-      <p v-else> Loading... </p>
+      <Header />
     </div>
+
+    <main class="container">
+      <router-view></router-view>
+    </main>
+
   </div>
 </template>
 
 <style lang="scss" scoped>
+
+main{
+  margin-top: 20px;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 20px;
+}
   
 </style>
