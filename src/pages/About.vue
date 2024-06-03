@@ -19,8 +19,6 @@ export default {
 
 <style lang="scss" scoped>
 
-h1{
-  margin-bottom: 20px;
-}
+
   
 </style>
