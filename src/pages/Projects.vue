@@ -2,12 +2,14 @@
 import { store } from '../data/store'
 import axios from 'axios';
 import Paginator from './partials/Paginator.vue';
+import Loader from './partials/Loader.vue';
 
 export default {
   
   name: 'Projects',
   components:{
     Paginator,
+    Loader,
   },
   data(){
     return{
@@ -15,6 +17,7 @@ export default {
       types: [],
       technologies: [],
       paginatorData: {},
+      loading: true,
     }
   },
   methods:{
@@ -71,8 +74,12 @@ export default {
 <template>
   <div class="main-wrapper">
     <h1>Elenco Progetti</h1>
+    
+    <div class="d-flex-center" v-if="loading">
+      <Loader />
+    </div>
    
-    <div class="container">
+    <div class="container" v-if="!loading">
       <ul>
         <li 
           v-for="project in projects" 

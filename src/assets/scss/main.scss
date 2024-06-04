@@ -10,6 +10,12 @@ body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+.d-flex-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .main-wrapper{
   padding-top: 40px;
   padding-bottom: 40px;
