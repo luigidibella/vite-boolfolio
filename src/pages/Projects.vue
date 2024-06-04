@@ -1,8 +1,8 @@
 <script>
-import { store } from '../data/store'
+import { store } from '../data/store';
 import axios from 'axios';
-import Paginator from './partials/Paginator.vue';
-import Loader from './partials/Loader.vue';
+import Paginator from '../components/partials/Paginator.vue';
+import Loader from '../components/partials/Loader.vue';
 
 export default {
   
@@ -73,13 +73,13 @@ export default {
 
 <template>
   <div class="main-wrapper">
-    <h1>Elenco Progetti</h1>
+    <h1>Elenco Progetti:</h1>
     
     <div class="d-flex-center" v-if="loading">
       <Loader />
     </div>
    
-    <div class="container" v-if="!loading">
+    <div class="container" v-else>
       <ul>
         <li 
           v-for="project in projects" 
@@ -94,26 +94,28 @@ export default {
         <div class="box">
           <h4>Tipi:</h4>
           <div class="inner">
-            <span 
+            <router-link 
               v-for="type in types" 
               :key="`t-${type.id}`" 
               class="badge"
+              :to="{ name: 'typeProjects', params:{slug: type.slug} }"
             >
               {{ type.name }}
-            </span>
+            </router-link>
           </div>
         </div>
 
         <div class="box">
           <h4>Tecnologie:</h4>
           <div class="inner">
-            <span 
+            <router-link 
               v-for="technology in technologies" 
               :key="`t-${technology.id}`" 
               class="badge"
+              :to="{ name: 'technologyProjects', params:{slug: technology.slug} }"
             >
               {{ technology.name }}
-            </span>
+            </router-link>
           </div>
         </div>
       </div>
@@ -136,7 +138,7 @@ export default {
       list-style: none;
       padding: 0 5px;
       li{
-        margin: 5px auto;
+        margin: 5px 0;
       }
     }
     .box{
@@ -165,6 +167,5 @@ export default {
     }
   }
 }
-
 
 </style>

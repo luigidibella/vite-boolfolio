@@ -4,6 +4,7 @@ export default {
   
   name: 'About',
 }
+
 </script>
 
 <template>
@@ -18,7 +19,5 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-
-
   
 </style>
