@@ -85,7 +85,8 @@ export default {
           v-for="project in projects" 
           :key="project.id"
         >
-          {{ project.id }} - {{ project.title }}
+          {{ project.id }} - 
+          <router-link :to="{ name: 'projectDetail', params:{slug: project.slug} }">{{ project.title }}</router-link>
         </li>
       </ul>
 
@@ -129,9 +130,11 @@ export default {
 .main-wrapper{
   .container{
     display: flex;
+    justify-content: space-between;
     min-height: 532px;
     ul{
-      padding: 0 30px;
+      list-style: none;
+      padding: 0 5px;
       li{
         margin: 5px auto;
       }
@@ -141,7 +144,7 @@ export default {
       border-radius: 5px;
       margin-bottom: 20px;
       padding: 15px;
-      max-width: 200px;
+      max-width: 190px;
       .inner{
         display: flex;
         justify-content: center;
