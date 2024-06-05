@@ -30,9 +30,10 @@ export default {
         console.log(error);
       })
     },
-    getImgPath(img) {
-      return "http://127.0.0.1:8000" + img;
-    },
+    // getImgPath(img) {
+    //   console.log(img);
+    //   return "http://127.0.0.1:8000" + img;
+    // },
   },
   computed:{
     type(){
@@ -89,7 +90,7 @@ export default {
       <p class="caption">{{ type }}</p>
       <p class="caption">{{ technologies }}</p>
       
-      <img :src="getImgPath(project.image)" alt="{{ project.image_original_name }}">
+      <img :src="project.image" alt="{{ project.image_original_name }}">
       
       <p class="text">{{ project.text }}</p>
       <p class="date">{{ formattedDate }}</p>
