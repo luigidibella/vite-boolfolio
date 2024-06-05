@@ -1,8 +1,36 @@
 <script>
+import axios from 'axios';
+import { store } from '../data/store';
 
 export default {
   
   name: 'Contacts',
+  data(){
+    return{
+      name: 'jiji',
+      email: 'jiji@gudoghi.it',
+      message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, corporis.',
+    }
+  },
+  methods: {
+    sendEmail(){
+      const data = {
+        name: this.name,
+        email: this.email,
+        message: this.message,
+      }
+
+      axios.post(store.apiUrl + 'send-email', data)
+      .then(result => {
+        console.log(result.data);
+      })
+      .catch(error => {
+        console.log(error.message);
+      })
+
+      console.log(data);
+    }
+  },
 }
 
 </script>
@@ -10,33 +38,30 @@ export default {
 <template>
   <div class="main-wrapper">
     <div class="container">
-      <h1>Contacts</h1>
+      <h1>Contatti</h1>
 
-      <div class="contact-list">
-        <ul>
-            <li>Mario Rossi
-              <ul>
-                <li><strong>Ruolo: </strong><em>Senior Full Stack Developer</em></li>
-                <li><strong>Email: </strong><a href="#">mario.rossi@fullstackdev.com</a></li>
-                <li><strong>Telefono: </strong><a href="#">+39 123 456 7890</a></li>
-              </ul>
-            </li>
-            <li>Giulia Bianchi
-              <ul>
-                <li><strong>Ruolo: </strong><em>Frontend Specialist</em></li>
-                <li><strong>Email: </strong><a href="#">giulia.bianchi@fullstackdev.com</a></li>
-                <li><strong>Telefono: </strong><a href="#">+39 123 456 7891</a></li>
-              </ul>
-            </li>
-            <li>Luca Verdi
-              <ul>
-                <li><strong>Ruolo: </strong><em>Backend Engineer</em></li>
-                <li><strong>Email: </strong><a href="#">luca.verdi@fullstackdev.com</a></li>
-                <li><strong>Telefono: </strong><a href="#">+39 123 456 7892</a></li>
-              </ul>
-            </li>
-        </ul>
-      </div>
+      <form @submit.prevent="sendEmail">
+        <div  >
+          <div>
+            <label for="name">Nome</label>
+            <input v-model="name" type="text" name="name" id="name" />
+            <p class="error"></p>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input v-model="email" type="text" name="email" id="email" />
+            <p class="error"></p>
+          </div>
+          <div>
+            <label for="message">Messaggio</label>
+            <textarea v-model="message" name="message" id="message"></textarea>
+            <p class="error"></p>
+          </div>
+          <div>
+            <button type="submit">Invia</button>
+          </div>
+        </div>
+      </form>
     
     </div>
   </div>
@@ -44,18 +69,29 @@ export default {
 
 <style lang="scss" scoped>
 
-.contact-list{
-  ul{
-    list-style: none;
-    li{
-      ul{
-        padding: 10px 30px;
-        li{
-          list-style: disc;
-        }
-      }
+form{
+  div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    div{
+      margin-bottom: 10px;
     }
   }
+}
+
+input,
+textarea,
+button{
+  width: 400px;
+}
+
+input{
+  height: 20px;
+}
+
+textarea{
+  height: 100px;
 }
   
 </style>
